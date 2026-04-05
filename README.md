@@ -4,7 +4,7 @@ An open-access Natural Language Processing toolkit for detecting clinical docume
 
 ## Overview
 
-Clinical documentation integrity is the foundation of patient safety, accurate billing, regulatory compliance, and public health surveillance. Yet healthcare facilities serving underserved populations — including long-term care facilities, Federally Qualified Health Centers (FQHCs), and Critical Access Hospitals (CAHs) — systematically lack access to advanced clinical informatics tools for documentation quality improvement.
+Clinical documentation integrity is the foundation of patient safety, accurate billing, regulatory compliance, and public health surveillance. Yet healthcare facilities serving underserved populations, including long-term care facilities, Federally Qualified Health Centers (FQHCs), and Critical Access Hospitals (CAHs), systematically lack access to advanced clinical informatics tools for documentation quality improvement.
 
 This toolkit provides an open-access, deployable NLP pipeline that automatically detects documentation deficiencies in clinical notes, including:
 
