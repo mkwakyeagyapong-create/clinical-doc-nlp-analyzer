@@ -1,0 +1,89 @@
+# Clinical Documentation NLP Analyzer Configuration
+# Customize detection parameters for your facility
+
+copy_paste:
+  # Jaccard similarity threshold for copy-paste detection (0.0 - 1.0)
+  similarity_threshold: 0.85
+  # Minimum text length (characters) to evaluate for duplication
+  min_text_length: 50
+  # Maximum lookback window (number of prior notes to compare)
+  lookback_window: 10
+
+completeness:
+  # Required sections by note type
+  required_sections:
+    progress_note:
+      - "subjective"
+      - "objective"
+      - "assessment"
+      - "plan"
+    nursing_assessment:
+      - "vitals"
+      - "pain_assessment"
+      - "functional_status"
+      - "skin_integrity"
+      - "nutrition"
+      - "care_plan"
+    discharge_summary:
+      - "admission_diagnosis"
+      - "hospital_course"
+      - "discharge_diagnosis"
+      - "discharge_medications"
+      - "follow_up_instructions"
+    admission_assessment:
+      - "chief_complaint"
+      - "history_of_present_illness"
+      - "past_medical_history"
+      - "medications"
+      - "allergies"
+      - "physical_exam"
+      - "assessment"
+      - "plan"
+
+  # Minimum word count per section to be considered present
+  min_section_words: 5
+
+terminology:
+  # Flag non-standard abbreviations
+  flag_abbreviations: true
+  # Path to medical abbreviation dictionary
+  abbreviation_dict: "config/medical_abbreviations.json"
+  # Flag terms not mappable to ICD-10 or SNOMED CT
+  flag_unmapped_terms: true
+
+coherence:
+  # Minimum semantic similarity between assessment and plan (0.0 - 1.0)
+  assessment_plan_threshold: 0.3
+  # Enable diagnosis-medication consistency checking
+  check_dx_med_consistency: true
+
+temporal:
+  # Flag notes documented more than N hours after encounter
+  late_documentation_hours: 72
+  # Flag future-dated entries
+  flag_future_dates: true
+
+deidentification:
+  # Enable automatic PHI removal
+  enabled: true
+  # De-identification method: "safe_harbor" or "expert"
+  method: "safe_harbor"
+  # Replacement token format
+  replacement_format: "[{entity_type}]"
+
+scoring:
+  # Weights for composite quality score (must sum to 1.0)
+  weights:
+    completeness: 0.30
+    copy_paste_free: 0.20
+    terminology: 0.15
+    coherence: 0.20
+    temporal: 0.15
+
+output:
+  # Output formats: html, json, csv
+  formats:
+    - "html"
+    - "json"
+  # Output directory
+  output_dir: "output/reports"
